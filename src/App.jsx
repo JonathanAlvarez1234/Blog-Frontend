@@ -1,14 +1,13 @@
-import { useState } from 'react'
+import { BrowserRouter } from "react-router-dom";
 import Navbar from './components/navbars/navbar.jsx';
 import Footer from './components/footer/footer.jsx';
- import './App.css'
+import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className="card">
       </div>
       <Footer />
