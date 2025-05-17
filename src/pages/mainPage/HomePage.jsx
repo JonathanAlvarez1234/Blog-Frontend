@@ -1,5 +1,5 @@
 import { SimpleGrid, Heading } from '@chakra-ui/react';
-import CourseCard from '../components/CourseCard';
+import CourseCard from '../../components/courses/CourseCard.jsx';
 
 const HomePage = () => {
   const courses = ['Informática', 'Electrónica', 'Diseño Web'];

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import PostCard from '../components/PostCard';
+import PostCard from '../../components/courses/PostCard.jsx';
 import axios from 'axios';
 import { Heading } from '@chakra-ui/react';
 
@@ -9,11 +9,16 @@ const CoursePage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/blogSystem/posts')
-      .then(res => {
+    const fetchPosts = async () => {
+      try {
+        const res = await axios.get('http://localhost:3001/blogSystem/posts');
         const filtered = res.data.posts.filter(p => p.course.name === courseName);
         setPosts(filtered);
-      });
+      } catch (err) {
+        console.error("Error al obtener publicaciones:", err);
+      }
+    };
+    fetchPosts();
   }, [courseName]);
 
   return (
