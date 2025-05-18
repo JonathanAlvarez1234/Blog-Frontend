@@ -1,105 +1,82 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import {
-    getComments,
-    saveComment,
-    searchComment,
-    updateComment,
-    deleteComment
+    getComments as getCommentsRequest,
+    saveComment as saveCommentRequest,
+    searchComment as searchCommentRequest,
+    updateComment as updateCommentRequest,
+    deleteComment as deleteCommentRequest,
 } from "../../services/api.jsx";
 
 export const useComments = () => {
     const [comments, setComments] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const fetchComments = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-            const res = await getComments();
-            if (!res.error) {
-                setComments(res.data.comments || []);
-            } else {
-                throw new Error(res.e?.message || "Error fetching comments");
-            }
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
+    const getComments = async () => {
+        setIsLoading(true);
+        const res = await getCommentsRequest();
+        if (res.error) {
+            toast.error(res.e?.response?.data?.message || "Error obteniendo comentarios");
+        } else {
+            setComments(res.data.comments); // <- El backend devuelve 'comments'
         }
+        setIsLoading(false);
     };
 
     const createComment = async (data) => {
-        try {
-            const res = await saveComment(data);
-            if (!res.error) {
-                await fetchComments();
-                return res.data;
-            } else {
-                throw new Error(res.e?.message || "Error saving comment");
-            }
-        } catch (err) {
-            setError(err.message);
-            return null;
+        const res = await saveCommentRequest(data);
+        if (res.error) {
+            toast.error(res.e?.response?.data?.message || "Error al guardar comentario");
+        } else {
+            toast.success("Comentario publicado");
+            setComments((prev) => [...prev, res.data.comment]);
         }
     };
 
-    const findComment = async (id) => {
-        try {
-            const res = await searchComment(id);
-            if (!res.error) {
-                return res.data.comment;
-            } else {
-                throw new Error(res.e?.message || "Error fetching comment");
-            }
-        } catch (err) {
-            setError(err.message);
-            return null;
+    const getCommentById = async (id) => {
+        const res = await searchCommentRequest(id);
+        if (res.error) {
+            toast.error(res.e?.response?.data?.message || "Error al buscar comentario");
+        }
+        return res.data?.comment;
+    };
+
+    const updateComment = async (id, data) => {
+        const res = await updateCommentRequest(id, data);
+        if (res.error) {
+            toast.error(res.e?.response?.data?.message || "Error actualizando comentario");
+        } else {
+            toast.success("Comentario actualizado");
+            setComments((prev) =>
+                prev.map((comment) =>
+                    comment._id === id ? { ...comment, ...data } : comment
+                )
+            );
         }
     };
 
-    const editComment = async (id, data) => {
-        try {
-            const res = await updateComment(id, data);
-            if (!res.error) {
-                await fetchComments();
-                return res.data.comment;
-            } else {
-                throw new Error(res.e?.message || "Error updating comment");
-            }
-        } catch (err) {
-            setError(err.message);
-            return null;
-        }
-    };
-
-    const removeComment = async (id) => {
-        try {
-            const res = await deleteComment(id);
-            if (!res.error) {
-                await fetchComments();
-                return true;
-            } else {
-                throw new Error(res.e?.message || "Error deleting comment");
-            }
-        } catch (err) {
-            setError(err.message);
-            return false;
+    const deleteComment = async (id) => {
+        const res = await deleteCommentRequest(id);
+        if (res.error) {
+            toast.error(res.e?.response?.data?.message || "Error eliminando comentario");
+        } else {
+            toast.success("Comentario eliminado");
+            setComments((prev) => prev.filter(comment => comment._id !== id));
         }
     };
 
     useEffect(() => {
-        fetchComments();
+        getComments();
     }, []);
 
     return {
-        comments,
-        loading,
-        error,
-        createComment,
-        findComment,
-        editComment,
-        removeComment,
-        refresh: fetchComments
-    };
+    comments,
+    isLoading,
+    getComments,
+    createComment,
+    getCommentById,
+    editComment: updateComment,
+    removeComment: deleteComment,
+    refresh: getComments
+};
 };

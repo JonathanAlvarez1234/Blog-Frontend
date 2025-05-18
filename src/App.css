@@ -9,3 +9,110 @@
   bottom: 0;
   width: 100%;
 }
+
+/* Global backgrounds */
+body {
+  background-color: #fffee4;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* CourseCard */
+.course-card {
+  background-color: #ffefd3;
+  border: 1px solid #d0ecea;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+.course-card:hover {
+  transform: scale(1.02);
+}
+.course-card-title {
+  font-size: 1.25rem;
+  color: #8b7a5e;
+  margin-bottom: 0.5rem;
+}
+.course-card button {
+  background-color: #9fd6d2;
+  color: white;
+}
+.course-card button:hover {
+  background-color: #8b7a5e;
+}
+
+/* PostCard */
+.post-card {
+  background-color: #fff;
+  border: 1px solid #d0ecea;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.06);
+}
+.post-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8b7a5e;
+}
+.post-description {
+  margin-top: 0.5rem;
+  color: #444;
+}
+.post-date {
+  font-size: 0.85rem;
+  color: #9fd6d2;
+  margin-top: 0.75rem;
+}
+.post-toggle-btn {
+  background-color: #9fd6d2;
+  margin-top: 1rem;
+}
+.post-toggle-btn:hover {
+  background-color: #8b7a5e;
+}
+
+/* Comment Section */
+.comment-box {
+  background-color: #fffee4;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d0ecea;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.comment-author {
+  font-weight: bold;
+  color: #8b7a5e;
+}
+.comment-content {
+  margin-top: 0.25rem;
+  color: #333;
+}
+.comment-date {
+  font-size: 0.75rem;
+  color: #9fd6d2;
+  margin-top: 0.5rem;
+}
+
+/* Comment Form */
+.comment-form input,
+.comment-form textarea {
+  background-color: #ffefd3;
+  border: 1px solid #d0ecea;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.comment-form button {
+  background-color: #9fd6d2;
+  color: white;
+}
+.comment-form button:hover {
+  background-color: #8b7a5e;
+}
+
+/* Titles (HomePage, CoursePage) */
+.page-title {
+  color: #8b7a5e;
+  margin-bottom: 1.5rem;
+}

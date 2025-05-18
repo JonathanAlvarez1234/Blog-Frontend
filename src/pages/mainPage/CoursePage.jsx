@@ -12,7 +12,8 @@ const CoursePage = () => {
     const fetchPosts = async () => {
       try {
         const res = await axios.get('http://localhost:3001/blogSystem/posts');
-        const filtered = res.data.posts.filter(p => p.course.name === courseName);
+        const filtered = res.data.posts.filter(p => p.course && p.course.name === courseName);
+        console.log("Posts recibidos:", filtered); // <-- Verifica esto
         setPosts(filtered);
       } catch (err) {
         console.error("Error al obtener publicaciones:", err);
@@ -24,8 +25,8 @@ const CoursePage = () => {
   return (
     <>
       <Heading mb="6">Publicaciones de {courseName}</Heading>
-      {posts.map(post => (
-        <PostCard key={post._id} post={post} />
+      {posts.map((post, index) => (
+        <PostCard key={post._id || index} post={post} />
       ))}
     </>
   );
