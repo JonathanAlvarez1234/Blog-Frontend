@@ -25,8 +25,8 @@ const CoursePage = () => {
   return (
     <>
       <Heading mb="6">Publicaciones de {courseName}</Heading>
-      {posts.map((post, index) => (
-        <PostCard key={post._id || index} post={post} />
+      {posts.map((post) => (
+        <PostCard key={post._id} post={post} />
       ))}
     </>
   );

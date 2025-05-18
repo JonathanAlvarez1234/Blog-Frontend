@@ -13,7 +13,7 @@ const App = () => {
         <div className="card">
           <AppRoutes />
         </div>
-        <Footer />
+        {/*<Footer />*/}
       </>
     </BrowserRouter>
   );

@@ -7,7 +7,7 @@ const apiClient = axios.create({
 
 export const saveComment = async (data) => {
     try {
-        return await apiClient.post('/comments/', data);
+        return await apiClient.post('/comments', data);
     } catch (e) {
         return { 
             error: true, 

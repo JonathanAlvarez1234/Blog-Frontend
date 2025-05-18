@@ -71,27 +71,38 @@ body {
   background-color: #8b7a5e;
 }
 
-/* Comment Section */
-.comment-box {
-  background-color: #fffee4;
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #d0ecea;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+/* Botones del CommentSection */
+.comment-btn {
+  background-color: #9fd6d2;
+  color: white;
+  font-weight: 500;
 }
-.comment-author {
-  font-weight: bold;
-  color: #8b7a5e;
+.comment-btn:hover {
+  background-color: #8b7a5e;
 }
-.comment-content {
-  margin-top: 0.25rem;
+
+.comment-btn-yellow {
+  background-color: #f2c94c;
+  color: #fff;
+}
+.comment-btn-yellow:hover {
+  background-color: #d4a72c;
+}
+
+.comment-btn-red {
+  background-color: #e57373;
+  color: white;
+}
+.comment-btn-red:hover {
+  background-color: #c62828;
+}
+
+.comment-btn-cancel {
+  background-color: #e0e0e0;
   color: #333;
 }
-.comment-date {
-  font-size: 0.75rem;
-  color: #9fd6d2;
-  margin-top: 0.5rem;
+.comment-btn-cancel:hover {
+  background-color: #bdbdbd;
 }
 
 /* Comment Form */

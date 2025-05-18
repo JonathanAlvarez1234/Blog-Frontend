@@ -2,7 +2,7 @@ import {
     Box, Input, Textarea, Button, VStack, Text, HStack
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
-import {useComments} from '../../shared/hooks/useComments.jsx';
+import { useComments } from '../../shared/hooks/useComments.jsx';
 
 const CommentSection = ({ postId }) => {
     const {
@@ -29,7 +29,6 @@ const CommentSection = ({ postId }) => {
 
         setVisitorName('');
         setContent('');
-        refresh();
     };
 
     const handleEdit = (comment) => {
@@ -54,10 +53,10 @@ const CommentSection = ({ postId }) => {
                         {new Date(comment.date).toLocaleString()}
                     </Text>
                     <HStack mt="2" spacing="2">
-                        <Button size="sm" onClick={() => handleEdit(comment)} colorScheme="yellow">
+                        <Button size="sm" onClick={() => handleEdit(comment)} className="comment-btn-yellow">
                             Editar
                         </Button>
-                        <Button size="sm" onClick={() => deleteComment(comment._id)} colorScheme="red">
+                        <Button size="sm" onClick={() => deleteComment(comment._id)} className="comment-btn-red">
                             Eliminar
                         </Button>
                     </HStack>
@@ -78,11 +77,11 @@ const CommentSection = ({ postId }) => {
                     mb="2"
                 />
                 <HStack>
-                    <Button colorScheme="blue" onClick={handleSubmit}>
+                    <Button onClick={handleSubmit} className="comment-btn">
                         {editingId ? 'Actualizar' : 'Comentar'}
                     </Button>
                     {editingId && (
-                        <Button onClick={handleCancel} colorScheme="gray">
+                        <Button onClick={handleCancel} className="comment-btn-cancel">
                             Cancelar
                         </Button>
                     )}
