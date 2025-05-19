@@ -1,4 +1,4 @@
-import { Box, Heading, Flex } from "@chakra-ui/react";
+import { Box, Heading, Flex, Image } from "@chakra-ui/react";
 import CourseCard from "../../components/courses/CourseCard.jsx";
 
 const HomePage = () => {
@@ -6,14 +6,17 @@ const HomePage = () => {
     {
       name: "Tecnologia III",
       color: "#9fd6d2",
+      image: "/images/Tecno.png",
     },
     {
       name: "Taller III",
       color: "#f2c94c",
+      image: "/images/Taller.png",
     },
     {
       name: "Practica Supervisada",
       color: "#e57373",
+      image: "/images/PracTicaS.png",
     },
   ];
 
@@ -21,7 +24,10 @@ const HomePage = () => {
     <Box
       width="100vw"
       minHeight="100vh"
-      bg="#fffee4"
+      bgImage="url('/images/footer.png')"
+      bgSize="cover"
+      bgRepeat="no-repeat"
+      bgPosition="center"
       px={4}
       py={10}
       display="flex"
@@ -36,11 +42,23 @@ const HomePage = () => {
       {courses.map((course, index) => (
         <Flex
           key={course.name}
-          justifyContent={index % 2 === 0 ? "flex-end" : "flex-start"}
+          justifyContent="center"
+          alignItems="center"
+          flexDirection={index % 2 === 0 ? "row" : "row-reverse"}
           mb={8}
           w="100%"
-          maxW="600px"
+          maxW="700px"
+          gap={6}
         >
+          <Image
+            src={course.image}
+            alt={course.name}
+            height="140px"
+            width="140px"
+            objectFit="cover"
+            borderRadius="md"
+            boxShadow="md"
+          />
           <CourseCard
             courseName={course.name}
             buttonColor={course.color}

@@ -14,6 +14,10 @@ const CourseCard = ({ courseName, buttonColor = '#9fd6d2', buttonText = 'Ver pub
       transition="all 0.2s"
       _hover={{ transform: 'scale(1.03)', boxShadow: 'xl' }}
       w="100%"
+      minH="140px"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
     >
       <VStack spacing={4}>
         <Text fontSize="xl" fontWeight="semibold" color="#8b7a5e">
