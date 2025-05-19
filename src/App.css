@@ -1,5 +1,3 @@
-
-
 .footer {
   background-color: #000000;
   color: white;
@@ -12,31 +10,42 @@
 
 /* Global backgrounds */
 body {
-  background-color: #fffee4;
+  background-color: #f7f7f7;
   font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #f7f7f6, #ffefd3);
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
 }
 
 /* CourseCard */
 .course-card {
-  background-color: #ffefd3;
-  border: 1px solid #d0ecea;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
+  background-color: #fffaf0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
 }
+
 .course-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
+
 .course-card-title {
   font-size: 1.25rem;
   color: #8b7a5e;
   margin-bottom: 0.5rem;
 }
+
 .course-card button {
   background-color: #9fd6d2;
   color: white;
 }
+
 .course-card button:hover {
   background-color: #8b7a5e;
 }
@@ -49,26 +58,37 @@ body {
   padding: 1.5rem;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.06);
 }
+
 .post-title {
   font-size: 1.5rem;
   font-weight: bold;
   color: #8b7a5e;
 }
+
 .post-description {
   margin-top: 0.5rem;
   color: #444;
 }
+
 .post-date {
   font-size: 0.85rem;
   color: #9fd6d2;
   margin-top: 0.75rem;
 }
+
 .post-toggle-btn {
   background-color: #9fd6d2;
   margin-top: 1rem;
 }
+
 .post-toggle-btn:hover {
   background-color: #8b7a5e;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 /* Botones del CommentSection */
@@ -77,6 +97,7 @@ body {
   color: white;
   font-weight: 500;
 }
+
 .comment-btn:hover {
   background-color: #8b7a5e;
 }
@@ -85,6 +106,7 @@ body {
   background-color: #f2c94c;
   color: #fff;
 }
+
 .comment-btn-yellow:hover {
   background-color: #d4a72c;
 }
@@ -93,6 +115,7 @@ body {
   background-color: #e57373;
   color: white;
 }
+
 .comment-btn-red:hover {
   background-color: #c62828;
 }
@@ -101,6 +124,7 @@ body {
   background-color: #e0e0e0;
   color: #333;
 }
+
 .comment-btn-cancel:hover {
   background-color: #bdbdbd;
 }
@@ -114,10 +138,12 @@ body {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
 }
+
 .comment-form button {
   background-color: #9fd6d2;
   color: white;
 }
+
 .comment-form button:hover {
   background-color: #8b7a5e;
 }
@@ -126,4 +152,19 @@ body {
 .page-title {
   color: #8b7a5e;
   margin-bottom: 1.5rem;
+}
+
+.back-btn {
+  background-color: #9fd6d2;
+  color: white;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.back-btn:hover {
+  background-color: #8b7a5e;
+  transform: scale(1.05);
 }
