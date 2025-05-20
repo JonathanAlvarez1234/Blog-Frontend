@@ -1,7 +1,12 @@
-import { Box, Heading, Flex, Image } from "@chakra-ui/react";
+import { Box, Heading, Flex, Image, Select } from "@chakra-ui/react";
 import CourseCard from "../../components/courses/CourseCard.jsx";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const [selectedCourse, setSelectedCourse] = useState("");
+
   const courses = [
     {
       name: "Tecnologia III",
@@ -20,11 +25,19 @@ const HomePage = () => {
     },
   ];
 
+  const handleSelectChange = (e) => {
+    const value = e.target.value;
+    if (value) {
+      navigate(`/courses/${value}`);
+    }
+  };
+
   return (
     <Box
       width="100vw"
       minHeight="100vh"
-      bgImage="url('/images/footer.png')"
+      mt="70px"
+      bgImage="url('/images/BackG.png')"
       bgSize="cover"
       bgRepeat="no-repeat"
       bgPosition="center"
@@ -35,6 +48,21 @@ const HomePage = () => {
       justifyContent="center"
       alignItems="center"
     >
+      
+      <Select
+        placeholder="Filtrar publicaciones por curso"
+        mb={6}
+        maxW="300px"
+        bg="white"
+        onChange={handleSelectChange}
+      >
+        {courses.map((course) => (
+          <option key={course.name} value={course.name}>
+            {course.name}
+          </option>
+        ))}
+      </Select>
+
       <Heading mb={8} fontSize="3xl" color="#8b7a5e" textAlign="center">
         BloG
       </Heading>

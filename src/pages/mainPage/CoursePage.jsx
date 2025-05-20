@@ -1,8 +1,17 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PostCard from "../../components/courses/PostCard.jsx";
+import { Text } from '@chakra-ui/react';
 import axios from "axios";
-import { Heading, Box, Button } from "@chakra-ui/react";
+import {
+  Heading,
+  Box,
+  Button,
+  Container,
+  SimpleGrid,
+  Flex,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 const CoursePage = () => {
   const { courseName } = useParams();
@@ -16,7 +25,6 @@ const CoursePage = () => {
         const filtered = res.data.posts.filter(
           (p) => p.course && p.course.name === courseName && p._id
         );
-        console.log("Posts recibidos:", filtered);
         setPosts(filtered);
       } catch (err) {
         console.error("Error al obtener publicaciones:", err);
@@ -25,45 +33,55 @@ const CoursePage = () => {
     fetchPosts();
   }, [courseName]);
 
+  const cardBg = useColorModeValue("white", "gray.800");
+
   return (
-    <>
-      <Box maxW="7xl" mx="auto" px={4} py={6}>
-        <Heading
-          mb={8}
-          textAlign="center"
-          fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
-          fontWeight="bold"
-          color="#134BF2"
-          bg="#F2F2F2"
-          px={6}
-          py={4}
-          borderRadius="lg"
-          boxShadow="md"
-          border="2px solid #1BA0F2"
-          width="fit-content"
-          mx="auto"
+    <Box
+      bgImage="url('/images/BackG.png')" // asegurate que esté en /public/images
+      bgSize="cover"
+      bgPosition="center"
+      bgRepeat="no-repeat"
+      minH="100vh"
+      w="100vw" // 👈 Agrega esto para cubrir ancho completo
+      mt="70px"
+      py={10}
+    >
+      <Box
+        maxW="7xl"
+        mx="auto"
+        px={4}
+      >
+        <Flex
+          direction="column"
+          align="center"
+          justify="center"
+          w="100%"
+          bg="rgba(255, 255, 255, 0.9)"
+          borderRadius="xl"
+          p={6}
+          boxShadow="xl"
         >
-          📘 Publicaciones del curso {courseName}
-        </Heading>
+          <Heading fontSize="4xl" color="blue.700" mt="70px" mb={4} textAlign="center">
+            📘 Publicaciones del curso
+          </Heading>
+          <Text fontSize="xl" color="gray.700" fontWeight="medium" mb={8} textAlign="center">
+            {courseName}
+          </Text>
+        </Flex>
 
-        <Box
-          display="grid"
-          gridTemplateColumns={{ base: "1fr", md: "1fr 1fr" }}
-          gap={6}
-        >
-          {posts.map((post) => {
-            console.log("Renderizando post:", post);
-            return <PostCard key={post._id} post={post} />;
-          })}
-        </Box>
-      </Box>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} mt={8}>
+          {posts.map((post) => (
+            <PostCard key={post._id} post={post} />
+          ))}
+        </SimpleGrid>
 
-      <Box px={4} py={6}>
-        <Button className="back-btn" onClick={() => navigate("/")}>
-          ← Volver al inicio
-        </Button>
+        <Flex justify="center" mt={10}>
+          <Button colorScheme="blue" variant="solid" onClick={() => navigate("/")}>
+            ← Volver al inicio
+          </Button>
+        </Flex>
       </Box>
-    </>
+    </Box>
   );
 };
 

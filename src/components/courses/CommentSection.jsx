@@ -62,17 +62,21 @@ const CommentSection = ({ postId }) => {
         <VStack spacing="4" align="stretch">
             {comments && comments.length > 0 ? (
                 comments.map(comment => (
-                    <Box key={comment._id} bg="white" p="3" borderRadius="md" shadow="sm">
-                        <Text fontWeight="bold">{comment.visitorName}</Text>
-                        <Text mt="1">{comment.content}</Text>
+                    <Box key={comment._id} bg="#fdfaf6" p="4" borderRadius="md" shadow="md" border="1px solid #e0e0e0">
+                        <Text fontWeight="semibold" fontSize="md" color="#8b7a5e">
+                            {comment.visitorName}
+                        </Text>
+                        <Text mt="1" color="gray.700">
+                            {comment.content}
+                        </Text>
                         <Text fontSize="xs" color="gray.500" mt="1">
                             {new Date(comment.date).toLocaleString()}
                         </Text>
                         <HStack mt="2" spacing="2">
-                            <Button size="sm" onClick={() => handleEdit(comment)} className="comment-btn-yellow">
+                            <Button size="sm" bg="#f2c94c" color="white" _hover={{ bg: "#d4a72c" }} onClick={() => handleEdit(comment)}>
                                 Editar
                             </Button>
-                            <Button size="sm" onClick={() => handleDelete(comment._id)} className="comment-btn-red">
+                            <Button size="sm" bg="#e57373" color="white" _hover={{ bg: "#c62828" }} onClick={() => handleDelete(comment._id)}>
                                 Eliminar
                             </Button>
                         </HStack>
@@ -82,25 +86,27 @@ const CommentSection = ({ postId }) => {
                 <Text>No hay comentarios aún.</Text>
             )}
 
-            <Box mt="4">
+            <Box mt="4" bg="white" p="4" borderRadius="md" shadow="sm">
                 <Input
                     placeholder="Tu nombre"
                     value={visitorName}
                     onChange={(e) => setVisitorName(e.target.value)}
                     mb="2"
+                    bg="#ffefd3"
                 />
                 <Textarea
                     placeholder="Escribe un comentario"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     mb="2"
+                    bg="#ffefd3"
                 />
                 <HStack>
-                    <Button onClick={handleSubmit} className="comment-btn">
-                        {editingId ? 'Actualizar' : 'Comentar'}
+                    <Button bg="#9fd6d2" color="white" _hover={{ bg: "#8b7a5e" }} onClick={handleSubmit}>
+                        {editingId ? "Actualizar" : "Comentar"}
                     </Button>
                     {editingId && (
-                        <Button onClick={handleCancel} className="comment-btn-cancel">
+                        <Button bg="#e0e0e0" color="black" _hover={{ bg: "#bdbdbd" }} onClick={handleCancel}>
                             Cancelar
                         </Button>
                     )}
